@@ -12,7 +12,7 @@ In this chapter we'll learn how to do the same. And also, how to pass arrays to 
 
 ## Rest parameters `...`
 
-A function can be called with any number of arguments, no matter how it is defined.
+একটি ফাংশনকে যেকোন সংখ্যক আর্গুমেন্ট দিয়ে কল করা যেতে পারে, এটি যেভাবেই সংজ্ঞায়িত করা হোক না কেন।
 
 Like here:
 ```js run
@@ -23,7 +23,7 @@ function sum(a, b) {
 alert( sum(1, 2, 3, 4, 5) );
 ```
 
-There will be no error because of "excessive" arguments. But of course in the result only the first two will be counted.
+There will be no error because of "excessive" arguments. But of course in the result only the first two will be counted
 
 The rest of the parameters can be included in the function definition by using three dots `...` followed by the name of the array that will contain them. The dots literally mean "gather the remaining parameters into an array".
 
