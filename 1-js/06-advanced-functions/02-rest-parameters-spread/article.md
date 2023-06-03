@@ -1,6 +1,6 @@
 # Rest parameters and spread syntax
 
-Many JavaScript built-in functions support an arbitrary number of arguments.
+অনেক জাভাস্ক্রিপ্ট বিল্ট-ইন ফাংশন একটি নির্বিচারে সংখ্যক আর্গুমেন্ট সমর্থন করে।
 
 For instance:
 
@@ -8,7 +8,7 @@ For instance:
 - `Object.assign(dest, src1, ..., srcN)` -- copies properties from `src1..N` into `dest`.
 - ...and so on.
 
-In this chapter we'll learn how to do the same. And also, how to pass arrays to such functions as parameters.
+ এই অধ্যায়ে আমরা শিখব কিভাবে একই কাজ করতে হয়। এবং এছাড়াও, প্যারামিটার হিসাবে যেমন ফাংশন অ্যারে পাস কিভাবে.
 
 ## Rest parameters `...`
 
@@ -23,11 +23,12 @@ function sum(a, b) {
 alert( sum(1, 2, 3, 4, 5) );
 ```
 
-There will be no error because of "excessive" arguments. But of course in the result only the first two will be counted
 
-The rest of the parameters can be included in the function definition by using three dots `...` followed by the name of the array that will contain them. The dots literally mean "gather the remaining parameters into an array".
+"excessive" যুক্তির কারণে কোন ত্রুটি হবে না। তবে অবশ্যই ফলাফলে শুধুমাত্র প্রথম দুটি গণনা করা হবে
 
-For instance, to gather all arguments into array `args`:
+বাকি প্যারামিটারগুলিকে তিনটি বিন্দু ব্যবহার করে ফাংশনের সংজ্ঞায় অন্তর্ভুক্ত করা যেতে পারে `...` এর পরে যে অ্যারের নামটি সেগুলিকে ধারণ করবে। বিন্দুগুলির আক্ষরিক অর্থ "একটি অ্যারেতে অবশিষ্ট প্যারামিটারগুলি সংগ্রহ করুন"।
+
+উদাহরণস্বরূপ, অ্যারে `args`-এ সমস্ত আর্গুমেন্ট সংগ্রহ করতে:
 
 ```js run
 function sumAll(...args) { // args is the name for the array
@@ -43,9 +44,9 @@ alert( sumAll(1, 2) ); // 3
 alert( sumAll(1, 2, 3) ); // 6
 ```
 
-We can choose to get the first parameters as variables, and gather only the rest.
+আমরা ভেরিয়েবল হিসাবে প্রথম প্যারামিটারগুলি পেতে বেছে নিতে পারি এবং শুধুমাত্র বাকিগুলি সংগ্রহ করতে পারি।
 
-Here the first two arguments go into variables and the rest go into `titles` array:
+এখানে প্রথম দুটি আর্গুমেন্ট ভেরিয়েবলে যায় এবং বাকিগুলো `titles` অ্যারেতে যায়:
 
 ```js run
 function showName(firstName, lastName, ...titles) {
@@ -75,7 +76,7 @@ The `...rest` must always be last.
 
 ## The "arguments" variable
 
-There is also a special array-like object named `arguments` that contains all arguments by their index.
+`arguments` নামে একটি বিশেষ অ্যারে-সদৃশ বস্তু রয়েছে যা তাদের সূচক অনুসারে সমস্ত আর্গুমেন্ট ধারণ করে।
 
 For instance:
 
@@ -96,13 +97,14 @@ showName("Julius", "Caesar");
 showName("Ilya");
 ```
 
-In old times, rest parameters did not exist in the language, and using `arguments` was the only way to get all arguments of the function. And it still works, we can find it in the old code.
 
-But the downside is that although `arguments` is both array-like and iterable, it's not an array. It does not support array methods, so we can't call `arguments.map(...)` for example.
+পুরানো সময়ে, ভাষাতে বিশ্রামের পরামিতি বিদ্যমান ছিল না, এবং `arguments` ব্যবহার করে ফাংশনের সমস্ত আর্গুমেন্ট পাওয়ার একমাত্র উপায় ছিল। এবং এটি এখনও কাজ করে, আমরা এটি পুরানো কোডে খুঁজে পেতে পারি।
 
-Also, it always contains all arguments. We can't capture them partially, like we did with rest parameters.
+কিন্তু নেতিবাচক দিক হল যদিও `arguments` উভয়ই অ্যারের মতো এবং পুনরাবৃত্তিযোগ্য, এটি কোনো অ্যারে নয়। এটি অ্যারে পদ্ধতি সমর্থন করে না, তাই আমরা উদাহরণের জন্য `arguments.map(...)` কল করতে পারি না।
 
-So when we need these features, then rest parameters are preferred.
+এছাড়াও, এটি সর্বদা সমস্ত আর্গুমেন্ট ধারণ করে। আমরা তাদের আংশিকভাবে ক্যাপচার করতে পারি না, যেমন আমরা বাকি প্যারামিটার দিয়ে করেছি।
+
+সুতরাং যখন আমাদের এই বৈশিষ্ট্যগুলির প্রয়োজন হয়, তখন বিশ্রামের পরামিতিগুলিকে অগ্রাধিকার দেওয়া হয়।
 
 ````smart header="Arrow functions do not have `\"arguments\"`"
 If we access the `arguments` object from an arrow function, it takes them from the outer "normal" function.
@@ -118,7 +120,7 @@ function f() {
 f(1); // 1
 ```
 
-As we remember, arrow functions don't have their own `this`. Now we know they don't have the special `arguments` object either.
+আমরা মনে রাখি, তীর ফাংশনগুলির নিজস্ব `this` নেই। এখন আমরা জানি যে তাদের কাছে বিশেষ `arguments` অবজেক্টও নেই।
 ````
 
 
